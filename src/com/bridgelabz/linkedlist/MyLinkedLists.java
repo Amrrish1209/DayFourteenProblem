@@ -110,6 +110,56 @@ public class MyLinkedLists<K> {
 		}
 	}
 
+	public void delete(K key) {
+		// if head is null then list is empty
+		if (head == null) {
+			System.out.println("List is empty");
+			return;
+		}
+
+		// if the node to be deleted is the head node
+		if (head.getKey().equals(key)) {
+			head = head.getNext();
+			// if the list has only one node
+			if (head == null) {
+				tail = null;
+			}
+			System.out.println(key + " is deleted from the list");
+			return;
+		}
+
+		// search for the previous node of the node to be deleted
+		MyNode<K> currentNode = head;
+		while (currentNode.getNext() != null && !currentNode.getNext().getKey().equals(key)) {
+			currentNode = currentNode.getNext();
+		}
+
+		// if the node to be deleted is not found
+		if (currentNode.getNext() == null) {
+			System.out.println(key + " not found in the list");
+			return;
+		}
+
+		// update the next pointer of the previous node to the next node of the deleted
+		// node
+		currentNode.setNext(currentNode.getNext().getNext());
+		// if the deleted node is the tail node, update the tail pointer
+		if (currentNode.getNext() == null) {
+			tail = currentNode;
+		}
+		System.out.println(key + " is deleted from the list");
+	}
+
+	public int size() {
+		int size = 0;
+		MyNode<K> currentNode = head;
+		while (currentNode != null) {
+			size++;
+			currentNode = currentNode.getNext();
+		}
+		return size;
+	}
+
 	public static void main(String[] args) {
 
 		MyLinkedLists<Integer> list = new MyLinkedLists<Integer>();
@@ -119,6 +169,8 @@ public class MyLinkedLists<K> {
 		// list.popLast();
 		list.search(30);
 		list.insertAfter(30, 40);
+		list.delete(40);
+		System.out.println("size of a linkedlist" + list.size());
 		list.print();
 	}
 }
