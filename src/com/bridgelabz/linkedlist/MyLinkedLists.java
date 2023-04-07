@@ -58,6 +58,31 @@ public class MyLinkedLists<K> {
 		}
 	}
 
+	public void popLast() {
+		// if list is empty
+		if (head == null) {
+			System.out.println("List is empty");
+			return;
+		}
+
+		// if there is only one element in the list
+		if (head == tail) {
+			head = null;
+			tail = null;
+			return;
+		}
+
+		// traverse the list till the second last element
+		MyNode<K> currentNode = head;
+		while (currentNode.getNext() != tail) {
+			currentNode = currentNode.getNext();
+		}
+
+		// update tail and its previous element's next pointer to null
+		tail = currentNode;
+		tail.setNext(null);
+	}
+
 	public void print() {
 		// the value of head is stored in currentNode
 		MyNode<K> currentNode = head;
@@ -75,7 +100,7 @@ public class MyLinkedLists<K> {
 		list.append(56);
 		list.append(70);
 		list.insertAfter(56, 30);
-		list.pop();
+		list.popLast();
 		list.print();
 	}
 }
