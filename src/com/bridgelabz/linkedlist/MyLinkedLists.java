@@ -4,18 +4,27 @@ public class MyLinkedLists<K> {
 	private MyNode<K> head;
 	private MyNode<K> tail;
 
-	public void add(K key) {
+	/*
+	 * public void add(K key) { // key value is stored in newNode MyNode<K> newNode
+	 * = new MyNode<K>(key);
+	 * 
+	 * // if head is null then newNode value is stored head and tail if (head ==
+	 * null) { head = newNode; tail = newNode; } // if head is not null then newNode
+	 * of next value is stored in head else { newNode.setNext(head); head = newNode;
+	 * } }
+	 */
+	public void append(K key) {
 		// key value is stored in newNode
 		MyNode<K> newNode = new MyNode<K>(key);
 
-		// if head is null then newNode value is stored head and tail
-		if (head == null) {
+		// if tail is null then newNode value is stored head and tail
+		if (tail == null) {
 			head = newNode;
 			tail = newNode;
-		} // if head is not null then newNode of next value is stored in head
+		} // if tail is not null then newNode of next value is stored in tail
 		else {
-			newNode.setNext(head);
-			head = newNode;
+			tail.setNext(newNode);
+			tail = newNode;
 		}
 	}
 
@@ -33,9 +42,9 @@ public class MyLinkedLists<K> {
 	public static void main(String[] args) {
 
 		MyLinkedLists<Integer> list = new MyLinkedLists<Integer>();
-		list.add(70);
-		list.add(30);
-		list.add(56);
+		list.append(56);
+		list.append(30);
+		list.append(70);
 		list.print();
 	}
 }
