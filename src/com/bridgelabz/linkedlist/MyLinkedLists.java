@@ -48,6 +48,16 @@ public class MyLinkedLists<K> {
 		currentNode.setNext(newNode);
 	}
 
+	public void pop() {
+		// if head is null then list is empty
+		if (head == null) {
+			System.out.println("List is empty");
+		} // else head value change to next value
+		else {
+			head = head.getNext();
+		}
+	}
+
 	public void print() {
 		// the value of head is stored in currentNode
 		MyNode<K> currentNode = head;
@@ -65,6 +75,7 @@ public class MyLinkedLists<K> {
 		list.append(56);
 		list.append(70);
 		list.insertAfter(56, 30);
+		list.pop();
 		list.print();
 	}
 }
