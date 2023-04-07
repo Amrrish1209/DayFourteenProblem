@@ -116,8 +116,9 @@ public class MyLinkedLists<K> {
 		list.append(56);
 		list.append(70);
 		list.insertAfter(56, 30);
-		list.popLast();
-		list.print();
+		// list.popLast();
 		list.search(30);
+		list.insertAfter(30, 40);
+		list.print();
 	}
 }
