@@ -28,6 +28,26 @@ public class MyLinkedLists<K> {
 		}
 	}
 
+	public void insertAfter(K key, K newData) {
+		// head value is stored in currentNode
+		MyNode<K> currentNode = head;
+		// the condition check if currentNode is not null and it also check key of
+		// currentNode is not equal to key parameter passed
+		while (currentNode != null && !currentNode.getKey().equals(key)) {
+			currentNode = currentNode.getNext();
+		}
+		// if currentNode is null then key is not found
+		if (currentNode == null) {
+			System.out.println(key + " not found in the list");
+			return;
+		}
+		// a new node is created with the newData value, and its next pointer is set to
+		// the next pointer of the current node.
+		MyNode<K> newNode = new MyNode<K>(newData);
+		newNode.setNext(currentNode.getNext());
+		currentNode.setNext(newNode);
+	}
+
 	public void print() {
 		// the value of head is stored in currentNode
 		MyNode<K> currentNode = head;
@@ -43,8 +63,8 @@ public class MyLinkedLists<K> {
 
 		MyLinkedLists<Integer> list = new MyLinkedLists<Integer>();
 		list.append(56);
-		list.append(30);
 		list.append(70);
+		list.insertAfter(56, 30);
 		list.print();
 	}
 }
